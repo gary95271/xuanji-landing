@@ -4,10 +4,10 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#FDF6F0" />
-<title>玄机 XuanJi · 一个网关，接入主流 AI</title>
-<meta name="description" content="玄机是一个 AI API 聚合平台，统一接入 Claude / GPT / Gemini 等主流模型，OpenAI / Anthropic 协议双兼容，国内直连加速。" />
-<meta property="og:title" content="玄机 XuanJi · 一个网关，接入主流 AI" />
-<meta property="og:description" content="一行 base_url 切换，从此告别多厂商账单、Key 散落、海外网络抖动。" />
+<title>玄机 XuanJi · 你的 Claude，办公就绪</title>
+<meta name="description" content="玄机是一个面向办公场景的 Claude 助手平台。无需魔法稳定连接，自有网页 + 桌面客户端 100% 可靠，量大管饱增量计费，完美适配国产 DeepSeek v4。" />
+<meta property="og:title" content="玄机 XuanJi · 你的 Claude，办公就绪" />
+<meta property="og:description" content="无需翻墙，量大管饱，开箱即用。打工人的 Claude 助手。" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://xuanji.dev" />
 <link rel="icon" type="image/svg+xml" href="/logo.svg" />
@@ -39,7 +39,7 @@
     --ink-soft: #5a4537;
     --ink-mute: #8b7060;
     --line: rgba(184, 88, 58, 0.14);
-    --card-bg: rgba(255, 253, 250, 0.7);
+    --card-bg: rgba(255, 253, 250, 0.72);
     --card-border: rgba(184, 88, 58, 0.18);
     --shadow-sm: 0 1px 2px rgba(184, 88, 58, 0.06);
     --shadow-md: 0 8px 24px rgba(184, 88, 58, 0.08);
@@ -128,7 +128,7 @@
   }
   .hero-sub {
     font-size: 18px; color: var(--ink-soft);
-    max-width: 520px; margin: 0 0 32px;
+    max-width: 540px; margin: 0 0 32px;
   }
   .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
   .btn {
@@ -188,121 +188,175 @@
   }
   .section-head p { color: var(--ink-soft); font-size: 17px; margin: 0; }
 
-  /* ── Features ────────────────────────────────────────────────── */
-  .features {
+  /* ── Pillars (4 卖点大卡) ────────────────────────────────────── */
+  .pillars {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 22px;
   }
-  @media (max-width: 920px) { .features { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
-  .card {
+  @media (max-width: 720px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar {
     position: relative;
-    padding: 28px;
+    padding: 36px 32px;
     background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 18px;
+    border-radius: 22px;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    overflow: hidden;
   }
-  .card:hover {
-    transform: translateY(-3px);
+  .pillar::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent-1), var(--accent-3));
+    opacity: 0.7;
+  }
+  .pillar:hover {
+    transform: translateY(-4px);
     box-shadow: var(--shadow-md);
-    border-color: rgba(184, 88, 58, 0.3);
+    border-color: rgba(184, 88, 58, 0.28);
   }
-  .card .icon {
+  .pillar .num {
+    font-size: 12px; color: var(--accent-3); font-weight: 600;
+    letter-spacing: 0.18em; margin-bottom: 12px;
+  }
+  .pillar h3 {
+    margin: 0 0 12px; font-size: 22px; font-weight: 700; color: var(--ink);
+    letter-spacing: -0.01em; line-height: 1.25;
+  }
+  .pillar p {
+    margin: 0; font-size: 15px; color: var(--ink-soft); line-height: 1.7;
+  }
+  .pillar .icon-box {
+    position: absolute; top: 28px; right: 28px;
     width: 44px; height: 44px; border-radius: 12px;
     background: linear-gradient(135deg, rgba(224, 139, 104, 0.18), rgba(215, 119, 87, 0.06));
     display: flex; align-items: center; justify-content: center; color: var(--accent-3);
-    margin-bottom: 18px;
   }
-  .card h3 { margin: 0 0 8px; font-size: 17px; font-weight: 600; color: var(--ink); }
-  .card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; }
 
-  /* ── Code panel ──────────────────────────────────────────────── */
-  .code-section { padding: 88px 0; }
-  .code-grid {
+  /* ── Product modes (网页 / 桌面) ─────────────────────────────── */
+  .modes {
     display: grid;
-    grid-template-columns: 1fr 1.2fr;
-    gap: 56px;
-    align-items: center;
-  }
-  @media (max-width: 920px) { .code-grid { grid-template-columns: 1fr; gap: 36px; } }
-  .code-panel {
-    background: #1f1612;
-    border-radius: 18px;
-    box-shadow: var(--shadow-lg);
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.06);
-  }
-  .code-tabs {
-    display: flex; gap: 4px; padding: 10px 14px 0;
-    background: linear-gradient(180deg, #2a1f1a, #1f1612);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-  .code-tab {
-    padding: 9px 16px; font-size: 13px; color: rgba(255, 240, 230, 0.55);
-    background: transparent; border: none; cursor: pointer;
-    border-radius: 8px 8px 0 0;
-    border-bottom: 2px solid transparent;
-    transition: color .15s ease, background .15s ease, border-color .15s ease;
-  }
-  .code-tab:hover { color: rgba(255, 240, 230, 0.9); }
-  .code-tab.active {
-    color: #fff;
-    background: rgba(224, 139, 104, 0.12);
-    border-bottom-color: var(--accent-1);
-  }
-  .code-body {
-    padding: 22px 24px;
-    font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
-    font-size: 13.5px; line-height: 1.7;
-    color: #f3e6da;
-    overflow-x: auto;
-    white-space: pre;
-  }
-  .code-body[hidden] { display: none; }
-  .tok-key { color: #f7c590; }
-  .tok-str { color: #aedba0; }
-  .tok-com { color: #6f5b4d; font-style: italic; }
-  .tok-fn  { color: #e08b68; }
-  .tok-num { color: #d8b48a; }
-
-  /* ── Stats ────────────────────────────────────────────────────── */
-  .stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 22px;
   }
-  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
-  .stat {
-    padding: 28px 22px;
-    background: linear-gradient(180deg, rgba(255,253,250,0.85), rgba(255,253,250,0.5));
+  @media (max-width: 720px) { .modes { grid-template-columns: 1fr; } }
+  .mode {
+    background: var(--card-bg);
     border: 1px solid var(--card-border);
-    border-radius: 16px;
-    text-align: center;
+    border-radius: 18px;
+    padding: 30px 28px 28px;
+    transition: transform .2s ease, box-shadow .2s ease;
   }
-  .stat .num {
-    font-size: clamp(28px, 3.4vw, 38px); font-weight: 700;
-    background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
-    -webkit-background-clip: text; background-clip: text;
-    -webkit-text-fill-color: transparent;
-    line-height: 1; margin-bottom: 8px;
+  .mode:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .mode .tag {
+    display: inline-block; padding: 4px 10px; border-radius: 999px;
+    background: rgba(215, 119, 87, 0.12); color: var(--accent-3);
+    font-size: 12px; font-weight: 600; margin-bottom: 12px;
   }
-  .stat .label { color: var(--ink-mute); font-size: 13px; }
+  .mode h3 { margin: 0 0 8px; font-size: 19px; font-weight: 600; color: var(--ink); }
+  .mode p { margin: 0 0 16px; color: var(--ink-soft); font-size: 14.5px; }
+  .mode ul { margin: 0; padding: 0; list-style: none; font-size: 14px; color: var(--ink-soft); }
+  .mode ul li { padding: 6px 0; display: flex; gap: 8px; align-items: flex-start; }
+  .mode ul li::before {
+    content: ""; flex-shrink: 0;
+    width: 5px; height: 5px; margin-top: 9px; border-radius: 999px;
+    background: var(--accent-2);
+  }
 
-  /* ── Tech stack ───────────────────────────────────────────────── */
-  .stack {
-    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-    max-width: 760px; margin: 36px auto 0;
+  /* ── Models showcase ────────────────────────────────────────── */
+  .models {
+    display: flex; flex-wrap: wrap; gap: 14px; justify-content: center;
+    max-width: 880px; margin: 36px auto 0;
   }
-  .chip {
-    padding: 7px 14px; border-radius: 999px;
-    background: rgba(255, 253, 250, 0.7);
+  .model-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    background: rgba(255, 253, 250, 0.85);
     border: 1px solid var(--card-border);
-    font-size: 13px; color: var(--ink-soft);
+    border-radius: 14px;
+    font-size: 15px; color: var(--ink); font-weight: 500;
+    transition: transform .2s ease, border-color .2s ease;
   }
+  .model-chip:hover { transform: translateY(-2px); border-color: rgba(184, 88, 58, 0.32); }
+  .model-chip.featured {
+    background: linear-gradient(135deg, rgba(224, 139, 104, 0.15), rgba(215, 119, 87, 0.06));
+    border-color: rgba(184, 88, 58, 0.32);
+  }
+  .model-chip .badge {
+    font-size: 11px; padding: 2px 8px; border-radius: 999px;
+    background: var(--accent-2); color: #fff; font-weight: 600;
+  }
+
+  /* ── Pricing ────────────────────────────────────────────────── */
+  .pricing {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+    max-width: 820px; margin: 0 auto;
+  }
+  @media (max-width: 720px) { .pricing { grid-template-columns: 1fr; } }
+  .price-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 22px;
+    padding: 36px 30px;
+    text-align: left;
+    position: relative;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .price-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+  .price-card.highlight {
+    background: linear-gradient(160deg, #2a1f1a, #1f1612);
+    color: #fff;
+    border-color: transparent;
+  }
+  .price-card.highlight .price-name,
+  .price-card.highlight .price-desc { color: rgba(255, 240, 230, 0.85); }
+  .price-card.highlight .price-amount { color: #fff; }
+  .price-card.highlight .price-list li { color: rgba(255, 240, 230, 0.78); }
+  .price-card.highlight .price-list li::before { background: var(--accent-1); }
+  .price-card.highlight .ribbon {
+    position: absolute; top: 18px; right: 18px;
+    background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+    color: #fff; font-size: 11px; font-weight: 700; letter-spacing: 0.06em;
+    padding: 4px 12px; border-radius: 999px;
+  }
+  .price-name { font-size: 14px; font-weight: 600; color: var(--ink-soft); margin-bottom: 8px; letter-spacing: 0.04em; }
+  .price-amount {
+    font-size: 38px; font-weight: 700; color: var(--ink);
+    line-height: 1; margin-bottom: 6px;
+    letter-spacing: -0.02em;
+  }
+  .price-amount .unit { font-size: 14px; font-weight: 500; color: var(--ink-mute); margin-left: 4px; }
+  .price-card.highlight .price-amount .unit { color: rgba(255, 240, 230, 0.6); }
+  .price-desc { font-size: 13.5px; color: var(--ink-mute); margin-bottom: 22px; }
+  .price-list { list-style: none; padding: 0; margin: 0 0 24px; }
+  .price-list li {
+    padding: 6px 0; font-size: 14px; color: var(--ink-soft);
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .price-list li::before {
+    content: ""; flex-shrink: 0;
+    width: 5px; height: 5px; margin-top: 9px; border-radius: 999px;
+    background: var(--accent-2);
+  }
+  .price-cta {
+    display: block; text-align: center;
+    padding: 12px;
+    border-radius: 10px;
+    background: rgba(255, 253, 250, 0.6);
+    border: 1px solid var(--card-border);
+    font-size: 14px; font-weight: 500; color: var(--ink);
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .price-cta:hover { background: rgba(255, 253, 250, 0.95); border-color: rgba(184, 88, 58, 0.32); }
+  .price-card.highlight .price-cta {
+    background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+    border-color: transparent; color: #fff;
+  }
+  .price-card.highlight .price-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
 
   /* ── CTA bottom ───────────────────────────────────────────────── */
   .cta {
@@ -385,12 +439,12 @@
       <span>玄机 XuanJi</span>
     </a>
     <nav class="nav-links" aria-label="主导航">
-      <a href="#features">特性</a>
-      <a href="#code">接入</a>
-      <a href="#stack">架构</a>
-      <a href="#stats">数据</a>
+      <a href="#why">为什么选玄机</a>
+      <a href="#modes">如何使用</a>
+      <a href="#models">支持模型</a>
+      <a href="#pricing">价格</a>
     </nav>
-    <a class="nav-cta" href="https://xuanji.dev" target="_blank" rel="noopener">立即体验</a>
+    <a class="nav-cta" href="https://xuanji.dev" target="_blank" rel="noopener">立即开始</a>
   </div>
 </header>
 
@@ -398,25 +452,25 @@
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow"><span class="dot"></span>已稳定运行 · 支持 Claude / GPT / Gemini</span>
+      <span class="eyebrow"><span class="dot"></span>面向办公场景 · 已稳定服役</span>
       <h1 class="hero-title">
-        一个网关，<br />接入<span class="accent">主流 AI</span>。
+        你的 <span class="accent">Claude</span>，<br />办公就绪。
       </h1>
       <p class="hero-sub">
-        玄机是一个 AI API 聚合平台。一行 <code style="color:var(--accent-3); background: rgba(215,119,87,0.08); padding:2px 8px; border-radius:6px;">base_url</code>
-        切换，告别多厂商账单、Key 散落、海外网络抖动。OpenAI / Anthropic 协议双兼容，国内直连加速。
+        无需"魔法"翻墙，国内直连即用。自有网页对话 + 桌面客户端，宕机我们扛，可用率 99.9%。
+        量大管饱不限对话，超额还能按量补充。一键切换国产 DeepSeek v4，中文场景同样顺手。
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://xuanji.dev" target="_blank" rel="noopener">
-          开始使用
+          免费试用
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
-        <a class="btn btn-ghost" href="#code">查看接入</a>
+        <a class="btn btn-ghost" href="#why">看看到底好在哪</a>
       </div>
       <div class="hero-meta">
-        <div><strong>50+</strong>支持模型</div>
+        <div><strong>无需 VPN</strong>国内直连</div>
         <div><strong>99.9%</strong>可用率</div>
-        <div><strong>&lt;200ms</strong>国内首字延迟</div>
+        <div><strong>不限</strong>对话次数</div>
       </div>
     </div>
 
@@ -490,182 +544,149 @@
   </div>
 </section>
 
-<!-- ============ FEATURES ============ -->
-<section id="features">
+<!-- ============ 4 PILLARS ============ -->
+<section id="why">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Why XuanJi</div>
-      <h2>为开发者真实场景而生</h2>
-      <p>不止是一个 SDK 转发——账号风控、配额沙盒、文件生成、CN 加速都已就绪。</p>
+      <div class="kicker">为什么选玄机</div>
+      <h2>把 Claude 用到办公里，4 个真实痛点都帮你解决了</h2>
+      <p>不是又一个套壳，是真正能在办公环境里稳定跑下去的 Claude。</p>
     </div>
-    <div class="features">
+    <div class="pillars">
 
-      <div class="card">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
-        </div>
-        <h3>双协议兼容</h3>
-        <p>同一份 API Key，OpenAI 与 Anthropic 客户端任挑。SSE 流式、tool_use、system prompt cache 全量对齐。</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">
+      <div class="pillar">
+        <div class="num">01</div>
+        <div class="icon-box">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
         </div>
-        <h3>国内直连加速</h3>
-        <p>cn.xuanji.dev 专属子域，COS 香港对接 CN 直连。实测 TTFB 较原始线路降 2 秒以上，无需自己挂代理。</p>
+        <h3>无需"魔法"，稳定连接</h3>
+        <p>国内全程直连，告别 VPN 折腾、节点抖动、半夜断流。打开浏览器就能用，老板看会议进度时不会"这个 AI 又上不了"。</p>
       </div>
 
-      <div class="card">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h.01"/><path d="M7 12h.01"/><path d="M7 17h.01"/><path d="M11 7h6"/><path d="M11 12h6"/><path d="M11 17h6"/></svg>
+      <div class="pillar">
+        <div class="num">02</div>
+        <div class="icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
         </div>
-        <h3>账号池 + 风控隔离</h3>
-        <p>多账号轮转，自动剔除被限速 / 风控的账号；可标记/解锁、按账号限额，单账号问题不波及全局。</p>
+        <h3>自有 Web + 客户端，100% 可靠</h3>
+        <p>玄机自研的网页对话与桌面客户端，从零写到尾，不依赖任何第三方代理 SDK。任何环节出问题，我们 24 小时扛着修，出故障算我们的。</p>
       </div>
 
-      <div class="card">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+      <div class="pillar">
+        <div class="num">03</div>
+        <div class="icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
         </div>
-        <h3>Python 沙盒执行</h3>
-        <p>tool_use 里的 python 代码服务端真跑（独立容器隔离），客户端零额外配置；前端 Pyodide 自动兜底。</p>
+        <h3>量大管饱，按量加包</h3>
+        <p>标准订阅不限对话次数，正常办公写文档、查资料、改代码完全够用。遇上项目冲刺峰值？支持按需补充加包，账单清清楚楚，不会半路被卡死。</p>
       </div>
 
-      <div class="card">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+      <div class="pillar">
+        <div class="num">04</div>
+        <div class="icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
-        <h3>文件生成 / 下载</h3>
-        <p>对话中产出图片、PDF、表格、代码包，统一签名直链下载，过期可控；文件流式生成支持渐进展示。</p>
-      </div>
-
-      <div class="card">
-        <div class="icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <h3>第三方 Key 透传</h3>
-        <p>企业账号可指定使用自家 OpenAI / Anthropic Key，玄机仅透传不计费；接入零成本，下线零迁移。</p>
+        <h3>完美适配 DeepSeek v4</h3>
+        <p>除 Claude 全系列外，原生接入国产 DeepSeek v4。中文写作、长文档、代码任务都不掉队，敏感场景或预算紧张时一键切换，企业合规也更省心。</p>
       </div>
 
     </div>
   </div>
 </section>
 
-<!-- ============ CODE ============ -->
-<section id="code" class="code-section" style="padding-top: 56px;">
-  <div class="wrap code-grid">
-    <div>
-      <div class="kicker" style="color: var(--accent-3); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;">Quick Start</div>
-      <h2 style="margin: 0 0 16px; font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -0.01em; line-height: 1.2; font-weight: 700;">
-        改一行 <span style="color:var(--accent-3)">base_url</span><br />即刻接入。
-      </h2>
-      <p style="color: var(--ink-soft); font-size: 16px; margin: 0 0 24px;">
-        如果你已经在用 OpenAI / Anthropic 官方 SDK，几乎不需要改业务代码。
-        鉴权头、流式协议、工具调用全保持一致。
-      </p>
-      <ul style="list-style: none; padding: 0; margin: 0; color: var(--ink-soft); font-size: 14.5px;">
-        <li style="padding: 8px 0; border-bottom: 1px dashed var(--line);">不锁定你的客户端选型</li>
-        <li style="padding: 8px 0; border-bottom: 1px dashed var(--line);">cURL / Python / Node / Go 全跑得通</li>
-        <li style="padding: 8px 0;">支持 system prompt 缓存，节省重复读 token</li>
-      </ul>
-    </div>
-
-    <div class="code-panel" role="region" aria-label="代码示例">
-      <div class="code-tabs" role="tablist">
-        <button class="code-tab active" data-target="tab-curl" role="tab" aria-selected="true">cURL</button>
-        <button class="code-tab" data-target="tab-py" role="tab" aria-selected="false">Python</button>
-        <button class="code-tab" data-target="tab-anthropic" role="tab" aria-selected="false">Anthropic SDK</button>
-      </div>
-
-      <pre class="code-body" id="tab-curl"><span class="tok-com"># 兼容 OpenAI 协议端点</span>
-curl https://xuanji.dev/v1/chat/completions \
-  -H <span class="tok-str">"Authorization: Bearer $XUANJI_KEY"</span> \
-  -H <span class="tok-str">"Content-Type: application/json"</span> \
-  -d <span class="tok-str">'{
-    "model": "claude-sonnet-4.5",
-    "stream": true,
-    "messages": [
-      {"role":"user","content":"你好，玄机"}
-    ]
-  }'</span></pre>
-
-      <pre class="code-body" id="tab-py" hidden><span class="tok-key">from</span> openai <span class="tok-key">import</span> OpenAI
-
-client = <span class="tok-fn">OpenAI</span>(
-    api_key=os.environ[<span class="tok-str">"XUANJI_KEY"</span>],
-    base_url=<span class="tok-str">"https://xuanji.dev/v1"</span>,
-)
-
-stream = client.chat.completions.<span class="tok-fn">create</span>(
-    model=<span class="tok-str">"claude-sonnet-4.5"</span>,
-    messages=[{<span class="tok-str">"role"</span>: <span class="tok-str">"user"</span>, <span class="tok-str">"content"</span>: <span class="tok-str">"你好，玄机"</span>}],
-    stream=<span class="tok-key">True</span>,
-)
-<span class="tok-key">for</span> chunk <span class="tok-key">in</span> stream:
-    <span class="tok-fn">print</span>(chunk.choices[<span class="tok-num">0</span>].delta.content <span class="tok-key">or</span> <span class="tok-str">""</span>, end=<span class="tok-str">""</span>)</pre>
-
-      <pre class="code-body" id="tab-anthropic" hidden><span class="tok-key">import</span> anthropic
-
-client = anthropic.<span class="tok-fn">Anthropic</span>(
-    api_key=os.environ[<span class="tok-str">"XUANJI_KEY"</span>],
-    base_url=<span class="tok-str">"https://xuanji.dev"</span>,  <span class="tok-com"># 同一把 Key</span>
-)
-
-<span class="tok-key">with</span> client.messages.<span class="tok-fn">stream</span>(
-    model=<span class="tok-str">"claude-sonnet-4.5"</span>,
-    max_tokens=<span class="tok-num">2048</span>,
-    messages=[{<span class="tok-str">"role"</span>: <span class="tok-str">"user"</span>, <span class="tok-str">"content"</span>: <span class="tok-str">"用 python 算 fib(30)"</span>}],
-    tools=[{<span class="tok-str">"name"</span>: <span class="tok-str">"python"</span>, <span class="tok-str">"input_schema"</span>: {<span class="tok-str">"type"</span>: <span class="tok-str">"object"</span>}}],
-) <span class="tok-key">as</span> stream:
-    <span class="tok-key">for</span> text <span class="tok-key">in</span> stream.text_stream:
-        <span class="tok-fn">print</span>(text, end=<span class="tok-str">""</span>, flush=<span class="tok-key">True</span>)</pre>
-    </div>
-  </div>
-</section>
-
-<!-- ============ STATS ============ -->
-<section id="stats" style="padding-top: 56px; padding-bottom: 64px;">
+<!-- ============ 使用方式 ============ -->
+<section id="modes" style="padding-top: 56px;">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Numbers</div>
-      <h2>真实运行数据</h2>
-      <p>来自最近 30 天 PROD 监控。</p>
+      <div class="kicker">两种方式</div>
+      <h2>打开浏览器就能用，挂在桌面更顺手</h2>
+      <p>无需配置环境，无需安装代理。注册即用。</p>
     </div>
-    <div class="stats">
-      <div class="stat"><div class="num">99.9<span style="font-size:0.6em">%</span></div><div class="label">网关可用率</div></div>
-      <div class="stat"><div class="num">22<span style="font-size:0.6em">×</span></div><div class="label">CN 链路加速倍率</div></div>
-      <div class="stat"><div class="num">50<span style="font-size:0.6em">+</span></div><div class="label">支持模型</div></div>
-      <div class="stat"><div class="num">3</div><div class="label">主流协议兼容</div></div>
+    <div class="modes">
+      <div class="mode">
+        <span class="tag">推荐</span>
+        <h3>网页 Chat</h3>
+        <p>直接打开 xuanji.dev，登录开聊。所有功能在网页里都齐了。</p>
+        <ul>
+          <li>支持 Claude / DeepSeek / GPT / Gemini 全系列</li>
+          <li>对话历史自动云同步，换设备不丢失</li>
+          <li>文件上传、代码执行、文件生成，一站式</li>
+          <li>多设备同时在线，办公室和家里无缝切换</li>
+        </ul>
+      </div>
+      <div class="mode">
+        <span class="tag">桌面客户端</span>
+        <h3>原生客户端</h3>
+        <p>Mac / Windows 双平台，启动即聊，不抢浏览器标签页。</p>
+        <ul>
+          <li>全局热键唤起，思路来了就能记</li>
+          <li>常驻任务栏，不占系统资源</li>
+          <li>支持本地剪贴板 / 截图直接发送</li>
+          <li>稳定性比网页更高，不依赖浏览器进程</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ TECH STACK ============ -->
-<section id="stack" style="padding-top: 32px;">
+<!-- ============ 模型 ============ -->
+<section id="models" style="padding-top: 56px;">
   <div class="wrap">
     <div class="section-head">
-      <div class="kicker">Architecture</div>
-      <h2>工程上不偷懒</h2>
-      <p>上游一个亿级请求账号池，下游一个企业级前端。每一层都是可观测、可回滚、可演练的。</p>
+      <div class="kicker">支持模型</div>
+      <h2>顶级模型一站接入，按场景挑顺手的用</h2>
+      <p>不用为每个模型注册账号、办信用卡、找节点。一个玄机账号，全都包了。</p>
     </div>
-    <div class="stack">
-      <span class="chip">React 18</span>
-      <span class="chip">TypeScript</span>
-      <span class="chip">Vite</span>
-      <span class="chip">TailwindCSS</span>
-      <span class="chip">Ant Design</span>
-      <span class="chip">SWR</span>
-      <span class="chip">Zustand</span>
-      <span class="chip">FastAPI</span>
-      <span class="chip">Python 3.11</span>
-      <span class="chip">SSE 流式</span>
-      <span class="chip">Pyodide Sandbox</span>
-      <span class="chip">Cloudflare</span>
-      <span class="chip">腾讯云 COS</span>
-      <span class="chip">WireGuard Mesh</span>
-      <span class="chip">Nginx</span>
-      <span class="chip">OpenResty Lua</span>
+    <div class="models">
+      <span class="model-chip featured">Claude Sonnet 4.5 <span class="badge">主推</span></span>
+      <span class="model-chip featured">Claude Opus 4.5 <span class="badge">旗舰</span></span>
+      <span class="model-chip featured">DeepSeek v4 <span class="badge">国产</span></span>
+      <span class="model-chip">GPT-4o</span>
+      <span class="model-chip">GPT-4 Turbo</span>
+      <span class="model-chip">Gemini 2.0 Pro</span>
+      <span class="model-chip">Gemini 1.5 Flash</span>
+      <span class="model-chip">o1 / o1-mini</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 价格 ============ -->
+<section id="pricing" style="padding-top: 56px;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">定价</div>
+      <h2>一份订阅，管够日常办公；超额加包，应对项目冲刺</h2>
+      <p>没有按 token 计费的折磨，只有清晰可预期的账单。</p>
+    </div>
+    <div class="pricing">
+
+      <div class="price-card">
+        <div class="price-name">体验版</div>
+        <div class="price-amount">¥0<span class="unit">/ 7 天试用</span></div>
+        <div class="price-desc">注册即开通，零信用卡。</div>
+        <ul class="price-list">
+          <li>全模型试用额度</li>
+          <li>网页 chat + 客户端全功能</li>
+          <li>无任何功能阉割</li>
+        </ul>
+        <a class="price-cta" href="https://xuanji.dev" target="_blank" rel="noopener">免费试用</a>
+      </div>
+
+      <div class="price-card highlight">
+        <span class="ribbon">最划算</span>
+        <div class="price-name">标准订阅</div>
+        <div class="price-amount">按月起 / 按年更省<span class="unit"></span></div>
+        <div class="price-desc">不限对话次数，办公峰值也够用。</div>
+        <ul class="price-list">
+          <li>不限对话次数</li>
+          <li>Claude 全系列 + DeepSeek v4 + GPT + Gemini</li>
+          <li>用量超额支持按量加包，无强制升级</li>
+          <li>多设备同时在线</li>
+          <li>客服 24×7 工单响应</li>
+        </ul>
+        <a class="price-cta" href="https://xuanji.dev" target="_blank" rel="noopener">查看具体价格</a>
+      </div>
+
     </div>
   </div>
 </section>
@@ -674,8 +695,8 @@ client = anthropic.<span class="tok-fn">Anthropic</span>(
 <section style="padding: 24px;">
   <div class="cta">
     <div class="cta-inner">
-      <h2>把多个 AI 厂商，收纳到一行 URL。</h2>
-      <p>注册即送体验额度，无需信用卡。</p>
+      <h2>把 Claude 装进你的办公流。</h2>
+      <p>注册送试用额度，免信用卡。打开就能用。</p>
       <a class="btn btn-primary" href="https://xuanji.dev" target="_blank" rel="noopener">
         前往 xuanji.dev
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
@@ -690,34 +711,13 @@ client = anthropic.<span class="tok-fn">Anthropic</span>(
     <div class="row">
       <a href="https://xuanji.dev">主站</a>
       <a href="https://cn.xuanji.dev">国内加速</a>
-      <a href="https://admin.xuanji.dev">后台</a>
-      <a href="#features">特性</a>
-      <a href="#code">接入</a>
+      <a href="#why">为什么选</a>
+      <a href="#modes">如何使用</a>
+      <a href="#pricing">价格</a>
     </div>
-    <div>© 2026 玄机 XuanJi · 一个 AI API 聚合平台</div>
+    <div>© 2026 玄机 XuanJi · 让 Claude 真正可用</div>
   </div>
 </footer>
-
-<script>
-  // 代码 Tab 切换
-  (function(){
-    const tabs = document.querySelectorAll('.code-tab');
-    const bodies = document.querySelectorAll('.code-body');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        const target = tab.getAttribute('data-target');
-        tabs.forEach(t => {
-          t.classList.toggle('active', t === tab);
-          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
-        });
-        bodies.forEach(b => {
-          if (b.id === target) b.removeAttribute('hidden');
-          else b.setAttribute('hidden', '');
-        });
-      });
-    });
-  })();
-</script>
 
 </body>
 </html>
