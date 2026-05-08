@@ -1,65 +1,71 @@
-# 玄机 XuanJi · 项目宣传页
+# 玄机 XuanJi · 你的 Claude，办公就绪
 
-纯静态宣传页，零外部依赖（无 Tailwind / 无 CDN），CN 友好。
+> 一个面向办公场景的 Claude 助手平台 —— 国内直连、自研客户端、量大管饱、不封号不退款。
 
-## 文件
+[![访问主站](https://img.shields.io/badge/%E4%B8%BB%E7%AB%99-xuanji.dev-d97757?style=for-the-badge)](https://xuanji.dev)
+[![国内加速](https://img.shields.io/badge/%E5%9B%BD%E5%86%85%E5%8A%A0%E9%80%9F-cn.xuanji.dev-d97757?style=for-the-badge)](https://cn.xuanji.dev)
+
+## 玄机是什么
+
+玄机 XuanJi 是一个面向办公场景的 Claude 助手平台。我们解决你日常用 Claude 时遇到的 5 个最痛的问题：
+
+| | 痛点 | 玄机怎么解 |
+|---|---|---|
+| **01** | 账号一充钱就被 Anthropic 区域风控封停，余额清零退款无门 | **自营长期养护账号池**，专业团队 24/7 监控运维。**不封号、不退款** —— 账号风险我们扛 |
+| **02** | 国内访问 Claude 要翻墙，节点抖、半夜断流 | **国内全程直连**，无需任何"魔法"，打开浏览器就能用 |
+| **03** | 第三方代理跑路 / 接口随时挂 / 客户端 SDK 一升级就崩 | **自研网页对话 + 桌面客户端**，从零写到尾，不依赖任何第三方代理 SDK，宕机我们 24h 扛着修 |
+| **04** | 按 token 计费天天怕花超，按月限次又不够用 | **不限对话次数订阅**（标准套餐），峰值不够就**按需补包**，账单清清楚楚 |
+| **05** | 国产模型不接，中文场景体验差 | 原生接入 **DeepSeek v4**，中文写作、长文档、代码任务一线水准 |
+
+## 支持模型
+
+- **Claude Opus 4.7** —— 旗舰推理，复杂场景首选
+- **Claude Sonnet 4.6** —— 主推日常，性价比之王
+- **DeepSeek v4** —— 国产顶配，中文 / 长文 / 代码不掉队
+
+新版本上线后 24 小时内同步接入。
+
+## 套餐 · 新人首月立减 ¥30（全套餐通用）
+
+| 套餐 | 月费 | 新人首月 | 适合 |
+|---|---|---|---|
+| **Sonnet 畅享** | ¥49.9 | **¥19.9** | 日常工作 / 学习 / 写作 |
+| **全能套餐** | ¥179 | **¥149** | Sonnet + Opus 双模型 |
+| **PRO 套餐** | ¥829 | **¥799** | Opus 优先 / 重度推理 |
+| **至尊套餐** | ¥1829 | **¥1799** | 企业 / 团队 / 高强度 |
+
+也支持**按量付费**：充多少用多少，无月度上限。
+
+[查看完整套餐 →](https://xuanji.dev/subscribe)
+
+## 怎么开始
 
 ```
-web/landing/
-├─ index.html   # 单文件页面（内联 CSS + SVG）
-└─ logo.svg     # 品牌 logo
+1. 访问 https://xuanji.dev → 注册（送试用额度，无需信用卡）
+2. 选套餐 → 立享首月 -¥30
+3. 网页 chat 即开即用 / 下载桌面客户端
 ```
 
-## 本地预览
+## 客服 / 联系方式
 
-```bash
-cd web/landing && python3 -m http.server 8080
-# 然后访问 http://localhost:8080
-```
-
-或直接双击 `index.html` 用浏览器打开（favicon 路径会失效，其他 OK）。
-
-## 部署方式
-
-### A. GitHub Pages
-
-把整个 `web/landing/` 目录推到 `gh-pages` 分支或仓库的 Pages 配置目录即可：
-
-```bash
-# 例：单独 gh-pages 分支
-git subtree push --prefix=web/landing origin gh-pages
-```
-
-### B. 自家 Nginx / COS
-
-把 `index.html` + `logo.svg` 一起上传到任意静态服务器即可。建议加上：
-
-```
-Cache-Control: public, max-age=300
-```
-
-### C. 集成进现有 PROD
-
-如果想把它放到 `xuanji.dev/about`，在 `scripts/deploy-prod.sh` 加一段：
-
-```bash
-ssh "$PROD_HOST" "mkdir -p /opt/ai-api-platform/frontend/landing"
-scp web/landing/* "$PROD_HOST:/opt/ai-api-platform/frontend/landing/"
-# 在 nginx user.conf 加 location /about/ { alias /opt/ai-api-platform/frontend/landing/; }
-```
-
-## 修改内容
-
-所有文案在 `index.html` 里，按 section 找：
-
-| Section | 内容 |
+| 渠道 | 联系方式 |
 |---|---|
-| HERO | 主标题 / 副标题 / 数据条 |
-| FEATURES | 6 个特性卡片 |
-| CODE | cURL / Python / Anthropic 三个 Tab |
-| STATS | 4 个数字大字报 |
-| STACK | 技术栈 chip |
-| CTA | 底部行动召唤 |
-| FOOTER | 链接 + 版权 |
+| **QQ 用户群** | 1097758261（进群领邀请码 + 优惠券） |
+| **客服 QQ（1 对 1）** | 3750058914（续费 / 故障 / 账号） |
+| **邮箱** | support@xuanji.dev（工单 / 商务） |
 
-颜色变量在 `<style>` 顶部 `:root` 里，按需改。
+## 站点
+
+- 主站：[https://xuanji.dev](https://xuanji.dev)
+- 国内加速：[https://cn.xuanji.dev](https://cn.xuanji.dev)
+- 桌面客户端下载：[https://xuanji.dev/download](https://xuanji.dev/download)
+- 后台管理（仅管理员）：[https://admin.xuanji.dev](https://admin.xuanji.dev)
+
+## 关于本仓库
+
+本仓库托管 xuanji.dev 的官方宣传页（`index.html` + `logo.svg`），通过 GitHub Pages 服役于 [gary95271.github.io/xuanji-landing](https://gary95271.github.io/xuanji-landing/)。  
+作为玄机产品的对外门面之一，与主站 xuanji.dev 文案保持同步。
+
+---
+
+© 2026 玄机 XuanJi · All rights reserved.
