@@ -196,10 +196,13 @@
   }
   .pillar.full {
     grid-column: 1 / -1;
+    /* 2026-05-08: 整行卡内容居中 + 标题放大, 删除序号 */
+    text-align: center;
+    padding: 56px 40px;
   }
   @media (max-width: 720px) {
     .pillars { grid-template-columns: 1fr; }
-    .pillar.full { grid-column: auto; }
+    .pillar.full { grid-column: auto; padding: 40px 28px; }
   }
   .pillar {
     position: relative;
@@ -223,10 +226,6 @@
     box-shadow: var(--shadow-md);
     border-color: rgba(184, 88, 58, 0.28);
   }
-  .pillar .num {
-    font-size: 12px; color: var(--accent-3); font-weight: 600;
-    letter-spacing: 0.18em; margin-bottom: 12px;
-  }
   .pillar h3 {
     margin: 0 0 12px; font-size: 22px; font-weight: 700; color: var(--ink);
     letter-spacing: -0.01em; line-height: 1.25;
@@ -239,6 +238,22 @@
     width: 44px; height: 44px; border-radius: 12px;
     background: linear-gradient(135deg, rgba(224, 139, 104, 0.18), rgba(215, 119, 87, 0.06));
     display: flex; align-items: center; justify-content: center; color: var(--accent-3);
+  }
+  /* full 卡: icon 改为顶部居中 + 字体放大 + 描述限宽 */
+  .pillar.full .icon-box {
+    position: static; margin: 0 auto 20px;
+    width: 56px; height: 56px; border-radius: 16px;
+  }
+  .pillar.full .icon-box svg { width: 28px; height: 28px; }
+  .pillar.full h3 {
+    font-size: clamp(26px, 3.4vw, 38px);
+    margin-bottom: 18px;
+  }
+  .pillar.full p {
+    font-size: 16px;
+    max-width: 820px;
+    margin: 0 auto;
+    line-height: 1.75;
   }
 
   /* ── Product modes (网页 / 桌面) ─────────────────────────────── */
@@ -562,8 +577,7 @@
     <div class="pillars">
 
       <div class="pillar full">
-        <div class="num">01</div>
-        <div class="icon-box">
+<div class="icon-box">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
         </div>
         <h3>无需担心退款封号，账号风险我们扛</h3>
@@ -571,8 +585,7 @@
       </div>
 
       <div class="pillar">
-        <div class="num">02</div>
-        <div class="icon-box">
+<div class="icon-box">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
         </div>
         <h3>无需"魔法"，稳定连接</h3>
@@ -580,8 +593,7 @@
       </div>
 
       <div class="pillar">
-        <div class="num">03</div>
-        <div class="icon-box">
+<div class="icon-box">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
         </div>
         <h3>自有 Web + 客户端，100% 可靠</h3>
@@ -589,8 +601,7 @@
       </div>
 
       <div class="pillar">
-        <div class="num">04</div>
-        <div class="icon-box">
+<div class="icon-box">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
         </div>
         <h3>量大管饱，按量加包</h3>
@@ -598,8 +609,7 @@
       </div>
 
       <div class="pillar">
-        <div class="num">05</div>
-        <div class="icon-box">
+<div class="icon-box">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
         </div>
         <h3>完美适配 DeepSeek v4</h3>
