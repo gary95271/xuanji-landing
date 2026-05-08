@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 <meta name="theme-color" content="#FDF6F0" />
 <title>玄机 XuanJi · 你的 Claude，办公就绪</title>
-<meta name="description" content="玄机是一个面向办公场景的 Claude 助手平台。无需魔法稳定连接，自有网页 + 桌面客户端 100% 可靠，量大管饱增量计费，完美适配国产 DeepSeek v4。" />
+<meta name="description" content="玄机是一个面向办公场景的 Claude 助手平台。无需魔法稳定连接，自研网页 + 桌面客户端 100% 可靠，量大管饱增量计费，完美适配国产 DeepSeek v4，不封号不退款，办公无忧。" />
 <meta property="og:title" content="玄机 XuanJi · 你的 Claude，办公就绪" />
 <meta property="og:description" content="无需翻墙，量大管饱，开箱即用。打工人的 Claude 助手。" />
 <meta property="og:type" content="website" />
@@ -188,13 +188,19 @@
   }
   .section-head p { color: var(--ink-soft); font-size: 17px; margin: 0; }
 
-  /* ── Pillars (4 卖点大卡) ────────────────────────────────────── */
+  /* ── Pillars (5 卖点大卡; 最后一张跨整行收尾) ───────────────── */
   .pillars {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 22px;
   }
-  @media (max-width: 720px) { .pillars { grid-template-columns: 1fr; } }
+  .pillar.full {
+    grid-column: 1 / -1;
+  }
+  @media (max-width: 720px) {
+    .pillars { grid-template-columns: 1fr; }
+    .pillar.full { grid-column: auto; }
+  }
   .pillar {
     position: relative;
     padding: 36px 32px;
@@ -457,8 +463,9 @@
         你的 <span class="accent">Claude</span>，<br />办公就绪。
       </h1>
       <p class="hero-sub">
-        无需"魔法"翻墙，国内直连即用。自有网页对话 + 桌面客户端，宕机我们扛，可用率 99.9%。
-        量大管饱不限对话，超额还能按量补充。一键切换国产 DeepSeek v4，中文场景同样顺手。
+        无需"魔法"翻墙，国内直连即用。自研网页对话 + 桌面客户端，宕机我们扛，可用率 99.9%。
+        量大管饱不限对话，超额还能按量补充。完美适配国产 DeepSeek v4。账号长期稳定，
+        <strong style="color: var(--accent-3); font-weight: 600;">不封号、不退款，办公无忧</strong>。
       </p>
       <div class="hero-actions">
         <a class="btn btn-primary" href="https://xuanji.dev" target="_blank" rel="noopener">
@@ -549,7 +556,7 @@
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">为什么选玄机</div>
-      <h2>把 Claude 用到办公里，4 个真实痛点都帮你解决了</h2>
+      <h2>把 Claude 用到办公里，5 个真实痛点都帮你解决了</h2>
       <p>不是又一个套壳，是真正能在办公环境里稳定跑下去的 Claude。</p>
     </div>
     <div class="pillars">
@@ -590,6 +597,15 @@
         <p>除 Claude 全系列外，原生接入国产 DeepSeek v4。中文写作、长文档、代码任务都不掉队，敏感场景或预算紧张时一键切换，企业合规也更省心。</p>
       </div>
 
+      <div class="pillar full">
+        <div class="num">05</div>
+        <div class="icon-box">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>无需担心退款封号，账号风险我们扛</h3>
+        <p>市面上转售 Claude 服务的，账号一被 Anthropic 区域风控扫到就批量封停 —— 你充的钱、攒的对话历史一夜清零，退款无门。玄机不一样：自营长期养护账号池，由专业团队 24/7 监控运维，支付合规、IP 干净、风险隔离。<strong style="color: var(--accent-3); font-weight: 600;">用着用着账号没了？</strong>这事儿我们扛 —— 你只管聊，封号不封到你头上，余额不打水漂。</p>
+      </div>
+
     </div>
   </div>
 </section>
@@ -608,7 +624,7 @@
         <h3>网页 Chat</h3>
         <p>直接打开 xuanji.dev，登录开聊。所有功能在网页里都齐了。</p>
         <ul>
-          <li>支持 Claude / DeepSeek / GPT / Gemini 全系列</li>
+          <li>Claude Opus 4.7 + Sonnet 4.6 + DeepSeek v4 全系列</li>
           <li>对话历史自动云同步，换设备不丢失</li>
           <li>文件上传、代码执行、文件生成，一站式</li>
           <li>多设备同时在线，办公室和家里无缝切换</li>
@@ -634,19 +650,17 @@
   <div class="wrap">
     <div class="section-head">
       <div class="kicker">支持模型</div>
-      <h2>顶级模型一站接入，按场景挑顺手的用</h2>
-      <p>不用为每个模型注册账号、办信用卡、找节点。一个玄机账号，全都包了。</p>
+      <h2>用最好的 Claude，再配一个最强国产</h2>
+      <p>不用为每个模型注册账号、办信用卡、找节点。一个玄机账号，所有模型一站到位。</p>
     </div>
     <div class="models">
-      <span class="model-chip featured">Claude Sonnet 4.5 <span class="badge">主推</span></span>
-      <span class="model-chip featured">Claude Opus 4.5 <span class="badge">旗舰</span></span>
+      <span class="model-chip featured">Claude Opus 4.7 <span class="badge">旗舰</span></span>
+      <span class="model-chip featured">Claude Sonnet 4.6 <span class="badge">主推</span></span>
       <span class="model-chip featured">DeepSeek v4 <span class="badge">国产</span></span>
-      <span class="model-chip">GPT-4o</span>
-      <span class="model-chip">GPT-4 Turbo</span>
-      <span class="model-chip">Gemini 2.0 Pro</span>
-      <span class="model-chip">Gemini 1.5 Flash</span>
-      <span class="model-chip">o1 / o1-mini</span>
     </div>
+    <p style="text-align: center; color: var(--ink-mute); font-size: 13px; margin: 18px auto 0; max-width: 560px;">
+      跟 Anthropic 官方版本同步更新 · 新模型上线即接入 · 切换模型只需点一下
+    </p>
   </div>
 </section>
 
@@ -679,8 +693,9 @@
         <div class="price-desc">不限对话次数，办公峰值也够用。</div>
         <ul class="price-list">
           <li>不限对话次数</li>
-          <li>Claude 全系列 + DeepSeek v4 + GPT + Gemini</li>
+          <li>Claude Opus 4.7 + Sonnet 4.6 + DeepSeek v4</li>
           <li>用量超额支持按量加包，无强制升级</li>
+          <li>账号长期稳定，不封号、不退款</li>
           <li>多设备同时在线</li>
           <li>客服 24×7 工单响应</li>
         </ul>
