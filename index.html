@@ -1,0 +1,723 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#FDF6F0" />
+<title>玄机 XuanJi · 一个网关，接入主流 AI</title>
+<meta name="description" content="玄机是一个 AI API 聚合平台，统一接入 Claude / GPT / Gemini 等主流模型，OpenAI / Anthropic 协议双兼容，国内直连加速。" />
+<meta property="og:title" content="玄机 XuanJi · 一个网关，接入主流 AI" />
+<meta property="og:description" content="一行 base_url 切换，从此告别多厂商账单、Key 散落、海外网络抖动。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://xuanji.dev" />
+<link rel="icon" type="image/svg+xml" href="/logo.svg" />
+<style>
+  /* ── Reset / 基线 ────────────────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+                 "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background: linear-gradient(180deg, #FDF6F0 0%, #F5E6DA 100%);
+    color: #2a1f17;
+    line-height: 1.6;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+  a { color: inherit; text-decoration: none; }
+  button { font-family: inherit; }
+
+  /* ── 配色 ─────────────────────────────────────────────────────── */
+  :root {
+    --cream-1: #FDF6F0;
+    --cream-2: #F5E6DA;
+    --accent-1: #E08B68;
+    --accent-2: #D77757;
+    --accent-3: #B8583A;
+    --ink: #2a1f17;
+    --ink-soft: #5a4537;
+    --ink-mute: #8b7060;
+    --line: rgba(184, 88, 58, 0.14);
+    --card-bg: rgba(255, 253, 250, 0.7);
+    --card-border: rgba(184, 88, 58, 0.18);
+    --shadow-sm: 0 1px 2px rgba(184, 88, 58, 0.06);
+    --shadow-md: 0 8px 24px rgba(184, 88, 58, 0.08);
+    --shadow-lg: 0 24px 60px rgba(184, 88, 58, 0.12);
+  }
+
+  /* ── 容器 ─────────────────────────────────────────────────────── */
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+
+  /* ── 顶部导航 ─────────────────────────────────────────────────── */
+  header.nav {
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    background: rgba(253, 246, 240, 0.72);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 14px 24px; max-width: 1180px; margin: 0 auto;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 600; font-size: 17px; }
+  .brand .logo-mini { width: 28px; height: 28px; border-radius: 8px; }
+  .nav-links { display: flex; gap: 28px; font-size: 14px; color: var(--ink-soft); }
+  .nav-links a:hover { color: var(--accent-3); }
+  .nav-cta {
+    padding: 8px 18px;
+    background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+    color: #fff; border-radius: 999px; font-size: 14px; font-weight: 500;
+    box-shadow: var(--shadow-sm);
+    transition: transform .15s ease, box-shadow .2s ease;
+  }
+  .nav-cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-md); }
+  @media (max-width: 720px) { .nav-links { display: none; } }
+
+  /* ── Hero ─────────────────────────────────────────────────────── */
+  .hero {
+    position: relative;
+    padding: 84px 0 96px;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background:
+      radial-gradient(60% 50% at 80% 20%, rgba(224, 139, 104, 0.18), transparent 70%),
+      radial-gradient(45% 45% at 10% 80%, rgba(215, 119, 87, 0.10), transparent 70%);
+  }
+  .hero-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 920px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero { padding: 56px 0 64px; }
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px;
+    background: rgba(255, 253, 250, 0.7);
+    border: 1px solid var(--card-border);
+    font-size: 13px; color: var(--accent-3); font-weight: 500;
+    margin-bottom: 22px;
+  }
+  .eyebrow .dot {
+    width: 6px; height: 6px; border-radius: 999px;
+    background: var(--accent-2); box-shadow: 0 0 0 4px rgba(215, 119, 87, 0.18);
+    animation: pulse 2.4s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 4px rgba(215, 119, 87, 0.18); }
+    50%      { box-shadow: 0 0 0 8px rgba(215, 119, 87, 0.05); }
+  }
+  h1.hero-title {
+    margin: 0 0 20px;
+    font-size: clamp(38px, 5.6vw, 64px);
+    line-height: 1.08; letter-spacing: -0.02em; font-weight: 700;
+    color: var(--ink);
+  }
+  h1.hero-title .accent {
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .hero-sub {
+    font-size: 18px; color: var(--ink-soft);
+    max-width: 520px; margin: 0 0 32px;
+  }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 14px 26px; border-radius: 12px;
+    font-size: 15px; font-weight: 500;
+    transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+    border: none; cursor: pointer;
+  }
+  .btn-primary {
+    background: linear-gradient(180deg, var(--accent-1), var(--accent-2));
+    color: #fff; box-shadow: var(--shadow-md);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
+  .btn-ghost {
+    background: rgba(255, 253, 250, 0.6);
+    border: 1px solid var(--card-border); color: var(--ink);
+  }
+  .btn-ghost:hover { background: rgba(255, 253, 250, 0.9); transform: translateY(-1px); }
+
+  .hero-meta {
+    margin-top: 40px; display: flex; gap: 36px; flex-wrap: wrap;
+    color: var(--ink-mute); font-size: 13px;
+  }
+  .hero-meta strong { color: var(--accent-3); font-size: 22px; font-weight: 600; display: block; }
+
+  /* ── Hero 视觉：齿轮 ─────────────────────────────────────────── */
+  .hero-visual {
+    position: relative; aspect-ratio: 1 / 1; max-width: 480px; justify-self: end;
+    width: 100%;
+  }
+  @media (max-width: 920px) { .hero-visual { justify-self: center; max-width: 360px; } }
+  .hero-visual .ring-spin {
+    position: absolute; inset: 0;
+    animation: spin 60s linear infinite;
+  }
+  .hero-visual .ring-spin-rev {
+    position: absolute; inset: 8%;
+    animation: spin 90s linear infinite reverse;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .hero-visual svg { width: 100%; height: 100%; display: block; }
+
+  /* ── Section 通用 ───────────────────────────────────────────── */
+  section { padding: 88px 0; position: relative; }
+  @media (max-width: 720px) { section { padding: 64px 0; } }
+  .section-head { max-width: 720px; margin: 0 auto 56px; text-align: center; }
+  .section-head .kicker {
+    color: var(--accent-3); font-size: 13px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;
+  }
+  .section-head h2 {
+    margin: 0 0 14px;
+    font-size: clamp(28px, 3.6vw, 40px);
+    letter-spacing: -0.01em; line-height: 1.15; font-weight: 700;
+    color: var(--ink);
+  }
+  .section-head p { color: var(--ink-soft); font-size: 17px; margin: 0; }
+
+  /* ── Features ────────────────────────────────────────────────── */
+  .features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 920px) { .features { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .features { grid-template-columns: 1fr; } }
+  .card {
+    position: relative;
+    padding: 28px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    border-color: rgba(184, 88, 58, 0.3);
+  }
+  .card .icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: linear-gradient(135deg, rgba(224, 139, 104, 0.18), rgba(215, 119, 87, 0.06));
+    display: flex; align-items: center; justify-content: center; color: var(--accent-3);
+    margin-bottom: 18px;
+  }
+  .card h3 { margin: 0 0 8px; font-size: 17px; font-weight: 600; color: var(--ink); }
+  .card p { margin: 0; font-size: 14.5px; color: var(--ink-soft); line-height: 1.65; }
+
+  /* ── Code panel ──────────────────────────────────────────────── */
+  .code-section { padding: 88px 0; }
+  .code-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 56px;
+    align-items: center;
+  }
+  @media (max-width: 920px) { .code-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .code-panel {
+    background: #1f1612;
+    border-radius: 18px;
+    box-shadow: var(--shadow-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .code-tabs {
+    display: flex; gap: 4px; padding: 10px 14px 0;
+    background: linear-gradient(180deg, #2a1f1a, #1f1612);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+  .code-tab {
+    padding: 9px 16px; font-size: 13px; color: rgba(255, 240, 230, 0.55);
+    background: transparent; border: none; cursor: pointer;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 2px solid transparent;
+    transition: color .15s ease, background .15s ease, border-color .15s ease;
+  }
+  .code-tab:hover { color: rgba(255, 240, 230, 0.9); }
+  .code-tab.active {
+    color: #fff;
+    background: rgba(224, 139, 104, 0.12);
+    border-bottom-color: var(--accent-1);
+  }
+  .code-body {
+    padding: 22px 24px;
+    font-family: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 13.5px; line-height: 1.7;
+    color: #f3e6da;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .code-body[hidden] { display: none; }
+  .tok-key { color: #f7c590; }
+  .tok-str { color: #aedba0; }
+  .tok-com { color: #6f5b4d; font-style: italic; }
+  .tok-fn  { color: #e08b68; }
+  .tok-num { color: #d8b48a; }
+
+  /* ── Stats ────────────────────────────────────────────────────── */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 720px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+  .stat {
+    padding: 28px 22px;
+    background: linear-gradient(180deg, rgba(255,253,250,0.85), rgba(255,253,250,0.5));
+    border: 1px solid var(--card-border);
+    border-radius: 16px;
+    text-align: center;
+  }
+  .stat .num {
+    font-size: clamp(28px, 3.4vw, 38px); font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-1), var(--accent-3));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1; margin-bottom: 8px;
+  }
+  .stat .label { color: var(--ink-mute); font-size: 13px; }
+
+  /* ── Tech stack ───────────────────────────────────────────────── */
+  .stack {
+    display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+    max-width: 760px; margin: 36px auto 0;
+  }
+  .chip {
+    padding: 7px 14px; border-radius: 999px;
+    background: rgba(255, 253, 250, 0.7);
+    border: 1px solid var(--card-border);
+    font-size: 13px; color: var(--ink-soft);
+  }
+
+  /* ── CTA bottom ───────────────────────────────────────────────── */
+  .cta {
+    margin: 24px auto;
+    background: linear-gradient(135deg, #2a1f1a, #1f1612);
+    color: #fff;
+    border-radius: 28px;
+    padding: 72px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    max-width: 1132px;
+  }
+  .cta::before {
+    content: ""; position: absolute; inset: -20%;
+    background:
+      radial-gradient(40% 40% at 30% 30%, rgba(224, 139, 104, 0.35), transparent 70%),
+      radial-gradient(40% 40% at 75% 70%, rgba(215, 119, 87, 0.22), transparent 70%);
+    pointer-events: none;
+  }
+  .cta-inner { position: relative; }
+  .cta h2 {
+    font-size: clamp(28px, 3.6vw, 42px);
+    margin: 0 0 14px; font-weight: 700; letter-spacing: -0.01em;
+  }
+  .cta p { color: rgba(255, 240, 230, 0.7); font-size: 17px; margin: 0 0 28px; }
+  .cta .btn-primary { box-shadow: 0 12px 36px rgba(215, 119, 87, 0.4); }
+
+  /* ── Footer ───────────────────────────────────────────────────── */
+  footer {
+    padding: 36px 0 48px;
+    text-align: center;
+    color: var(--ink-mute);
+    font-size: 13px;
+  }
+  footer .row { display: flex; gap: 18px; justify-content: center; margin-bottom: 14px; flex-wrap: wrap; }
+  footer .row a:hover { color: var(--accent-3); }
+
+  /* ── Selection / 滚动条 ──────────────────────────────────────── */
+  ::selection { background: rgba(215, 119, 87, 0.3); }
+  ::-webkit-scrollbar { width: 10px; height: 10px; }
+  ::-webkit-scrollbar-thumb { background: rgba(184, 88, 58, 0.3); border-radius: 999px; }
+  ::-webkit-scrollbar-thumb:hover { background: rgba(184, 88, 58, 0.5); }
+
+  /* ── prefers-reduced-motion ──────────────────────────────────── */
+  @media (prefers-reduced-motion: reduce) {
+    .ring-spin, .ring-spin-rev, .eyebrow .dot { animation: none !important; }
+    * { transition-duration: .01ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <svg class="logo-mini" viewBox="0 0 1024 1024" aria-hidden="true">
+        <defs>
+          <linearGradient id="nav-bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#FDF6F0"/>
+            <stop offset="100%" stop-color="#F5E6DA"/>
+          </linearGradient>
+          <linearGradient id="nav-deep" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#D77757"/>
+            <stop offset="100%" stop-color="#B8583A"/>
+          </linearGradient>
+        </defs>
+        <rect width="1024" height="1024" rx="220" ry="220" fill="url(#nav-bg)"/>
+        <g transform="translate(512,512)" fill="url(#nav-deep)">
+          <polygon points="0,-180 35,-60 0,-20 -35,-60" transform="rotate(0)"/>
+          <polygon points="0,-180 35,-60 0,-20 -35,-60" transform="rotate(60)"/>
+          <polygon points="0,-180 35,-60 0,-20 -35,-60" transform="rotate(120)"/>
+          <polygon points="0,-180 35,-60 0,-20 -35,-60" transform="rotate(180)"/>
+          <polygon points="0,-180 35,-60 0,-20 -35,-60" transform="rotate(240)"/>
+          <polygon points="0,-180 35,-60 0,-20 -35,-60" transform="rotate(300)"/>
+          <circle cx="0" cy="0" r="22"/>
+        </g>
+      </svg>
+      <span>玄机 XuanJi</span>
+    </a>
+    <nav class="nav-links" aria-label="主导航">
+      <a href="#features">特性</a>
+      <a href="#code">接入</a>
+      <a href="#stack">架构</a>
+      <a href="#stats">数据</a>
+    </nav>
+    <a class="nav-cta" href="https://xuanji.dev" target="_blank" rel="noopener">立即体验</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><span class="dot"></span>已稳定运行 · 支持 Claude / GPT / Gemini</span>
+      <h1 class="hero-title">
+        一个网关，<br />接入<span class="accent">主流 AI</span>。
+      </h1>
+      <p class="hero-sub">
+        玄机是一个 AI API 聚合平台。一行 <code style="color:var(--accent-3); background: rgba(215,119,87,0.08); padding:2px 8px; border-radius:6px;">base_url</code>
+        切换，告别多厂商账单、Key 散落、海外网络抖动。OpenAI / Anthropic 协议双兼容，国内直连加速。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://xuanji.dev" target="_blank" rel="noopener">
+          开始使用
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="#code">查看接入</a>
+      </div>
+      <div class="hero-meta">
+        <div><strong>50+</strong>支持模型</div>
+        <div><strong>99.9%</strong>可用率</div>
+        <div><strong>&lt;200ms</strong>国内首字延迟</div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <!-- 外层旋转齿圈 -->
+      <div class="ring-spin">
+        <svg viewBox="0 0 1024 1024">
+          <defs>
+            <linearGradient id="hero-accent" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#E08B68"/>
+              <stop offset="100%" stop-color="#D77757"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(512,512)">
+            <circle cx="0" cy="0" r="380" fill="none" stroke="url(#hero-accent)" stroke-width="2" opacity="0.35"/>
+            <circle cx="0" cy="0" r="320" fill="none" stroke="url(#hero-accent)" stroke-width="28" opacity="0.18"/>
+            <g fill="url(#hero-accent)" opacity="0.32">
+              <rect x="-20" y="-355" width="40" height="50" rx="6" transform="rotate(0)"/>
+              <rect x="-20" y="-355" width="40" height="50" rx="6" transform="rotate(45)"/>
+              <rect x="-20" y="-355" width="40" height="50" rx="6" transform="rotate(90)"/>
+              <rect x="-20" y="-355" width="40" height="50" rx="6" transform="rotate(135)"/>
+              <rect x="-20" y="-355" width="40" height="50" rx="6" transform="rotate(180)"/>
+              <rect x="-20" y="-355" width="40" height="50" rx="6" transform="rotate(225)"/>
+              <rect x="-20" y="-355" width="40" height="50" rx="6" transform="rotate(270)"/>
+              <rect x="-20" y="-355" width="40" height="50" rx="6" transform="rotate(315)"/>
+            </g>
+            <g fill="#D77757" opacity="0.55">
+              <circle cx="320" cy="0" r="10" transform="rotate(22.5)"/>
+              <circle cx="320" cy="0" r="10" transform="rotate(67.5)"/>
+              <circle cx="320" cy="0" r="10" transform="rotate(112.5)"/>
+              <circle cx="320" cy="0" r="10" transform="rotate(157.5)"/>
+              <circle cx="320" cy="0" r="10" transform="rotate(202.5)"/>
+              <circle cx="320" cy="0" r="10" transform="rotate(247.5)"/>
+              <circle cx="320" cy="0" r="10" transform="rotate(292.5)"/>
+              <circle cx="320" cy="0" r="10" transform="rotate(337.5)"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <!-- 内层反向旋转 -->
+      <div class="ring-spin-rev">
+        <svg viewBox="0 0 1024 1024">
+          <defs>
+            <linearGradient id="hero-deep" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#D77757"/>
+              <stop offset="100%" stop-color="#B8583A"/>
+            </linearGradient>
+          </defs>
+          <g transform="translate(512,512)">
+            <circle cx="0" cy="0" r="200" fill="none" stroke="url(#hero-deep)" stroke-width="8" opacity="0.4"/>
+            <g fill="url(#hero-deep)">
+              <polygon points="0,-180 35,-60 0,-20 -35,-60" opacity="0.95" transform="rotate(0)"/>
+              <polygon points="0,-180 35,-60 0,-20 -35,-60" opacity="0.95" transform="rotate(60)"/>
+              <polygon points="0,-180 35,-60 0,-20 -35,-60" opacity="0.95" transform="rotate(120)"/>
+              <polygon points="0,-180 35,-60 0,-20 -35,-60" opacity="0.95" transform="rotate(180)"/>
+              <polygon points="0,-180 35,-60 0,-20 -35,-60" opacity="0.95" transform="rotate(240)"/>
+              <polygon points="0,-180 35,-60 0,-20 -35,-60" opacity="0.95" transform="rotate(300)"/>
+              <polygon points="0,-130 18,-55 0,-30 -18,-55" opacity="0.55" transform="rotate(30)"/>
+              <polygon points="0,-130 18,-55 0,-30 -18,-55" opacity="0.55" transform="rotate(90)"/>
+              <polygon points="0,-130 18,-55 0,-30 -18,-55" opacity="0.55" transform="rotate(150)"/>
+              <polygon points="0,-130 18,-55 0,-30 -18,-55" opacity="0.55" transform="rotate(210)"/>
+              <polygon points="0,-130 18,-55 0,-30 -18,-55" opacity="0.55" transform="rotate(270)"/>
+              <polygon points="0,-130 18,-55 0,-30 -18,-55" opacity="0.55" transform="rotate(330)"/>
+            </g>
+            <circle cx="0" cy="0" r="22" fill="url(#hero-deep)"/>
+            <circle cx="0" cy="0" r="10" fill="#FDF6F0"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Why XuanJi</div>
+      <h2>为开发者真实场景而生</h2>
+      <p>不止是一个 SDK 转发——账号风控、配额沙盒、文件生成、CN 加速都已就绪。</p>
+    </div>
+    <div class="features">
+
+      <div class="card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+        </div>
+        <h3>双协议兼容</h3>
+        <p>同一份 API Key，OpenAI 与 Anthropic 客户端任挑。SSE 流式、tool_use、system prompt cache 全量对齐。</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10 15 15 0 0 1-4-10 15 15 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>国内直连加速</h3>
+        <p>cn.xuanji.dev 专属子域，COS 香港对接 CN 直连。实测 TTFB 较原始线路降 2 秒以上，无需自己挂代理。</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 7h.01"/><path d="M7 12h.01"/><path d="M7 17h.01"/><path d="M11 7h6"/><path d="M11 12h6"/><path d="M11 17h6"/></svg>
+        </div>
+        <h3>账号池 + 风控隔离</h3>
+        <p>多账号轮转，自动剔除被限速 / 风控的账号；可标记/解锁、按账号限额，单账号问题不波及全局。</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>Python 沙盒执行</h3>
+        <p>tool_use 里的 python 代码服务端真跑（独立容器隔离），客户端零额外配置；前端 Pyodide 自动兜底。</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 13h6"/><path d="M9 17h6"/></svg>
+        </div>
+        <h3>文件生成 / 下载</h3>
+        <p>对话中产出图片、PDF、表格、代码包，统一签名直链下载，过期可控；文件流式生成支持渐进展示。</p>
+      </div>
+
+      <div class="card">
+        <div class="icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>第三方 Key 透传</h3>
+        <p>企业账号可指定使用自家 OpenAI / Anthropic Key，玄机仅透传不计费；接入零成本，下线零迁移。</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CODE ============ -->
+<section id="code" class="code-section" style="padding-top: 56px;">
+  <div class="wrap code-grid">
+    <div>
+      <div class="kicker" style="color: var(--accent-3); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 12px;">Quick Start</div>
+      <h2 style="margin: 0 0 16px; font-size: clamp(26px, 3.4vw, 36px); letter-spacing: -0.01em; line-height: 1.2; font-weight: 700;">
+        改一行 <span style="color:var(--accent-3)">base_url</span><br />即刻接入。
+      </h2>
+      <p style="color: var(--ink-soft); font-size: 16px; margin: 0 0 24px;">
+        如果你已经在用 OpenAI / Anthropic 官方 SDK，几乎不需要改业务代码。
+        鉴权头、流式协议、工具调用全保持一致。
+      </p>
+      <ul style="list-style: none; padding: 0; margin: 0; color: var(--ink-soft); font-size: 14.5px;">
+        <li style="padding: 8px 0; border-bottom: 1px dashed var(--line);">不锁定你的客户端选型</li>
+        <li style="padding: 8px 0; border-bottom: 1px dashed var(--line);">cURL / Python / Node / Go 全跑得通</li>
+        <li style="padding: 8px 0;">支持 system prompt 缓存，节省重复读 token</li>
+      </ul>
+    </div>
+
+    <div class="code-panel" role="region" aria-label="代码示例">
+      <div class="code-tabs" role="tablist">
+        <button class="code-tab active" data-target="tab-curl" role="tab" aria-selected="true">cURL</button>
+        <button class="code-tab" data-target="tab-py" role="tab" aria-selected="false">Python</button>
+        <button class="code-tab" data-target="tab-anthropic" role="tab" aria-selected="false">Anthropic SDK</button>
+      </div>
+
+      <pre class="code-body" id="tab-curl"><span class="tok-com"># 兼容 OpenAI 协议端点</span>
+curl https://xuanji.dev/v1/chat/completions \
+  -H <span class="tok-str">"Authorization: Bearer $XUANJI_KEY"</span> \
+  -H <span class="tok-str">"Content-Type: application/json"</span> \
+  -d <span class="tok-str">'{
+    "model": "claude-sonnet-4.5",
+    "stream": true,
+    "messages": [
+      {"role":"user","content":"你好，玄机"}
+    ]
+  }'</span></pre>
+
+      <pre class="code-body" id="tab-py" hidden><span class="tok-key">from</span> openai <span class="tok-key">import</span> OpenAI
+
+client = <span class="tok-fn">OpenAI</span>(
+    api_key=os.environ[<span class="tok-str">"XUANJI_KEY"</span>],
+    base_url=<span class="tok-str">"https://xuanji.dev/v1"</span>,
+)
+
+stream = client.chat.completions.<span class="tok-fn">create</span>(
+    model=<span class="tok-str">"claude-sonnet-4.5"</span>,
+    messages=[{<span class="tok-str">"role"</span>: <span class="tok-str">"user"</span>, <span class="tok-str">"content"</span>: <span class="tok-str">"你好，玄机"</span>}],
+    stream=<span class="tok-key">True</span>,
+)
+<span class="tok-key">for</span> chunk <span class="tok-key">in</span> stream:
+    <span class="tok-fn">print</span>(chunk.choices[<span class="tok-num">0</span>].delta.content <span class="tok-key">or</span> <span class="tok-str">""</span>, end=<span class="tok-str">""</span>)</pre>
+
+      <pre class="code-body" id="tab-anthropic" hidden><span class="tok-key">import</span> anthropic
+
+client = anthropic.<span class="tok-fn">Anthropic</span>(
+    api_key=os.environ[<span class="tok-str">"XUANJI_KEY"</span>],
+    base_url=<span class="tok-str">"https://xuanji.dev"</span>,  <span class="tok-com"># 同一把 Key</span>
+)
+
+<span class="tok-key">with</span> client.messages.<span class="tok-fn">stream</span>(
+    model=<span class="tok-str">"claude-sonnet-4.5"</span>,
+    max_tokens=<span class="tok-num">2048</span>,
+    messages=[{<span class="tok-str">"role"</span>: <span class="tok-str">"user"</span>, <span class="tok-str">"content"</span>: <span class="tok-str">"用 python 算 fib(30)"</span>}],
+    tools=[{<span class="tok-str">"name"</span>: <span class="tok-str">"python"</span>, <span class="tok-str">"input_schema"</span>: {<span class="tok-str">"type"</span>: <span class="tok-str">"object"</span>}}],
+) <span class="tok-key">as</span> stream:
+    <span class="tok-key">for</span> text <span class="tok-key">in</span> stream.text_stream:
+        <span class="tok-fn">print</span>(text, end=<span class="tok-str">""</span>, flush=<span class="tok-key">True</span>)</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STATS ============ -->
+<section id="stats" style="padding-top: 56px; padding-bottom: 64px;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Numbers</div>
+      <h2>真实运行数据</h2>
+      <p>来自最近 30 天 PROD 监控。</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="num">99.9<span style="font-size:0.6em">%</span></div><div class="label">网关可用率</div></div>
+      <div class="stat"><div class="num">22<span style="font-size:0.6em">×</span></div><div class="label">CN 链路加速倍率</div></div>
+      <div class="stat"><div class="num">50<span style="font-size:0.6em">+</span></div><div class="label">支持模型</div></div>
+      <div class="stat"><div class="num">3</div><div class="label">主流协议兼容</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH STACK ============ -->
+<section id="stack" style="padding-top: 32px;">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="kicker">Architecture</div>
+      <h2>工程上不偷懒</h2>
+      <p>上游一个亿级请求账号池，下游一个企业级前端。每一层都是可观测、可回滚、可演练的。</p>
+    </div>
+    <div class="stack">
+      <span class="chip">React 18</span>
+      <span class="chip">TypeScript</span>
+      <span class="chip">Vite</span>
+      <span class="chip">TailwindCSS</span>
+      <span class="chip">Ant Design</span>
+      <span class="chip">SWR</span>
+      <span class="chip">Zustand</span>
+      <span class="chip">FastAPI</span>
+      <span class="chip">Python 3.11</span>
+      <span class="chip">SSE 流式</span>
+      <span class="chip">Pyodide Sandbox</span>
+      <span class="chip">Cloudflare</span>
+      <span class="chip">腾讯云 COS</span>
+      <span class="chip">WireGuard Mesh</span>
+      <span class="chip">Nginx</span>
+      <span class="chip">OpenResty Lua</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section style="padding: 24px;">
+  <div class="cta">
+    <div class="cta-inner">
+      <h2>把多个 AI 厂商，收纳到一行 URL。</h2>
+      <p>注册即送体验额度，无需信用卡。</p>
+      <a class="btn btn-primary" href="https://xuanji.dev" target="_blank" rel="noopener">
+        前往 xuanji.dev
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="row">
+      <a href="https://xuanji.dev">主站</a>
+      <a href="https://cn.xuanji.dev">国内加速</a>
+      <a href="https://admin.xuanji.dev">后台</a>
+      <a href="#features">特性</a>
+      <a href="#code">接入</a>
+    </div>
+    <div>© 2026 玄机 XuanJi · 一个 AI API 聚合平台</div>
+  </div>
+</footer>
+
+<script>
+  // 代码 Tab 切换
+  (function(){
+    const tabs = document.querySelectorAll('.code-tab');
+    const bodies = document.querySelectorAll('.code-body');
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const target = tab.getAttribute('data-target');
+        tabs.forEach(t => {
+          t.classList.toggle('active', t === tab);
+          t.setAttribute('aria-selected', t === tab ? 'true' : 'false');
+        });
+        bodies.forEach(b => {
+          if (b.id === target) b.removeAttribute('hidden');
+          else b.setAttribute('hidden', '');
+        });
+      });
+    });
+  })();
+</script>
+
+</body>
+</html>
