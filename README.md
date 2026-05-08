@@ -1,9 +1,24 @@
 # 玄机 XuanJi · 你的 Claude，办公就绪
 
-> 一个面向办公场景的 Claude 助手平台 —— 国内直连、自研客户端、量大管饱、不封号不退款。
+> 一个面向办公场景的 **Claude 客户端 / Claude Code Agent** 平台 —— 国内直连、自研客户端、量大管饱、**Claude 防封不退款**、原生适配 **DeepSeek v4**。
 
 [![访问主站](https://img.shields.io/badge/%E4%B8%BB%E7%AB%99-xuanji.dev-d97757?style=for-the-badge)](https://xuanji.dev)
 [![国内加速](https://img.shields.io/badge/%E5%9B%BD%E5%86%85%E5%8A%A0%E9%80%9F-cn.xuanji.dev-d97757?style=for-the-badge)](https://cn.xuanji.dev)
+[![Star 换 30 元](https://img.shields.io/badge/⭐%20Star%20%E6%8D%A2-%C2%A530%20%E4%BC%98%E6%83%A0%E7%A0%81-d97757?style=for-the-badge)](https://xuanji.dev/claim-star)
+
+## ⭐ Star 一下，拿 ¥30 优惠码
+
+支持开源、扩散品牌，我们送你 **¥30 优惠码**，抵扣任意订阅或按量充值。
+
+**3 步流程**：
+
+1. 在本仓库右上角点 **Star** ⭐
+2. 进 [xuanji.dev/claim-star](https://xuanji.dev/claim-star) 输你的 GitHub 用户名
+3. 自动验证 → 立即生成专属优惠码（90 天有效）
+
+> 规则：1 个 GitHub 账号限领 1 次；不可叠加新人首月 -¥30，用较大那个。
+>
+> 自动发码端点上线前，可加 [QQ 群 1097758261](#客服--联系方式) 报你的 GitHub 用户名领码。
 
 ## 玄机是什么
 
