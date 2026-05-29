@@ -478,7 +478,7 @@
     transition: transform .2s ease, box-shadow .2s ease;
   }
   .create-grid figure:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
-  .create-grid img { display: block; width: 100%; height: auto; background: #1a1310; }
+  .create-grid img, .create-grid video { display: block; width: 100%; height: auto; background: #1a1310; }
   .create-grid figcaption {
     padding: 14px 18px; font-size: 14px; color: var(--ink-soft); font-weight: 500;
     border-top: 1px solid var(--line);
@@ -768,7 +768,7 @@
         <figcaption>🖼️ 图片生成 · 一句话出商用级图像</figcaption>
       </figure>
       <figure>
-        <img src="assets/demo-video.webp" alt="玄机视频生成示例 · 即梦 Seedance 文生视频" loading="lazy" width="516" height="254" />
+        <video src="assets/demo-video.mp4" autoplay muted loop playsinline preload="metadata" aria-label="玄机视频生成示例 · 即梦 Seedance 文生视频"></video>
         <figcaption>🎬 视频生成 · 即梦 Seedance · 文生视频 / 图生视频</figcaption>
       </figure>
     </div>
