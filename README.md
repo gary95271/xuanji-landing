@@ -3,7 +3,7 @@
 > 一个面向办公场景的 **Claude 客户端 / Claude Code Agent** 平台 —— 国内直连、自研客户端、量大管饱、**Claude 防封不退款**、原生适配 **DeepSeek v4**。
 
 [![访问主站](https://img.shields.io/badge/%E4%B8%BB%E7%AB%99-xuanji.dev-d97757?style=for-the-badge)](https://xuanji.dev)
-[![国内加速](https://img.shields.io/badge/%E5%9B%BD%E5%86%85%E5%8A%A0%E9%80%9F-cn.xuanji.dev-d97757?style=for-the-badge)](https://cn.xuanji.dev)
+[![国内站](https://img.shields.io/badge/%E5%9B%BD%E5%86%85%E7%AB%99-xuanjiart.com-d97757?style=for-the-badge)](https://xuanjiart.com)
 [![Star 换 30 元](https://img.shields.io/badge/⭐%20Star%20%E6%8D%A2-%C2%A530%20%E4%BC%98%E6%83%A0%E7%A0%81-d97757?style=for-the-badge)](https://xuanji.dev/register)
 
 ## ⭐ Star 一下，拿 ¥30 优惠码
@@ -35,7 +35,7 @@
 
 ## 支持模型
 
-- **Claude Opus 4.7** —— 旗舰推理，复杂场景首选
+- **Claude Opus 4.8** —— 最新旗舰推理，复杂场景首选
 - **Claude Sonnet 4.6** —— 主推日常，性价比之王
 - **DeepSeek v4** —— 国产顶配，中文 / 长文 / 代码不掉队
 
@@ -73,7 +73,7 @@
 ## 站点
 
 - 主站：[https://xuanji.dev](https://xuanji.dev)
-- 国内加速：[https://cn.xuanji.dev](https://cn.xuanji.dev)
+- 国内站：[https://xuanjiart.com](https://xuanjiart.com)
 - 桌面客户端下载：[https://xuanji.dev/download](https://xuanji.dev/download)
 - 后台管理（仅管理员）：[https://admin.xuanji.dev](https://admin.xuanji.dev)
 
