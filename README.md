@@ -75,7 +75,6 @@
 - 主站：[https://xuanji.dev](https://xuanji.dev)
 - 国内站：[https://xuanjiart.com](https://xuanjiart.com)
 - 桌面客户端下载：[https://xuanji.dev/download](https://xuanji.dev/download)
-- 后台管理（仅管理员）：[https://admin.xuanji.dev](https://admin.xuanji.dev)
 
 ## 关于本仓库
 
