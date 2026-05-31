@@ -112,7 +112,7 @@ Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、�
 
 **玄机 XuanJi** · Claude 客户端 / Claude Code Agent · GPT / IMAGINE2 · DeepSeek v4 · 即梦 Seedance
 
-`Claude 国内` · `Claude Code` · `Claude 防封` · `Claude 镜像` · `Cursor 国产替代` · `AI 办公` · `文生视频`
+`Claude` · `Claude Code` · `Claude 防封` · `GPT` · `IMAGINE2` · `Cursor 国产替代` · `AI 办公` · `文生视频`
 
 © 2026 玄机 XuanJi · All rights reserved.
 
