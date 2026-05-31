@@ -9,7 +9,7 @@
 [![国内站](https://img.shields.io/badge/国内站-xuanjiart.com-d97757?style=for-the-badge)](https://xuanjiart.com)
 [![立即试用](https://img.shields.io/badge/⭐_Star_换-¥30_优惠码-FF5722?style=for-the-badge)](https://xuanji.dev/register)
 
-![模型](https://img.shields.io/badge/模型-Claude_Opus_4.8_·_Sonnet_4.6_·_GPT--5.5_·_DeepSeek_v4_·_IMAGINE2-444?style=flat-square)
+![模型](https://img.shields.io/badge/模型-Claude_Opus_4.8_·_Sonnet_4.6_·_GPT--5.5_·_DeepSeek_v4_·_IMAGINE2_·_Seedance-444?style=flat-square)
 ![能力](https://img.shields.io/badge/能力-对话_·_编程_·_图片_·_视频-444?style=flat-square)
 ![平台](https://img.shields.io/badge/平台-Web_·_Windows_·_macOS-444?style=flat-square)
 ![连接](https://img.shields.io/badge/开箱即用-稳定可靠-22a06b?style=flat-square)
