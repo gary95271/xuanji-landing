@@ -3,13 +3,13 @@
 # 玄机 XuanJi · 你的 Claude，办公就绪
 
 **面向中国办公场景的 Claude 客户端 / Claude Code Agent 平台**
-国内直连 · 自研客户端 · 量大管饱 · **Claude 防封不退款** · 原生适配 DeepSeek v4 + 即梦 Seedance
+国内直连 · 自研客户端 · 量大管饱 · **Claude 防封不退款** · 原生适配 DeepSeek v4 · **新增 GPT 全系 (GPT-5.5 / GPT-5.4 Mini) + IMAGINE2 图像生成** + 即梦 Seedance
 
 [![访问主站](https://img.shields.io/badge/主站-xuanji.dev-d97757?style=for-the-badge)](https://xuanji.dev)
 [![国内站](https://img.shields.io/badge/国内站-xuanjiart.com-d97757?style=for-the-badge)](https://xuanjiart.com)
 [![立即试用](https://img.shields.io/badge/⭐_Star_换-¥30_优惠码-FF5722?style=for-the-badge)](https://xuanji.dev/register)
 
-![模型](https://img.shields.io/badge/模型-Claude_Opus_4.8_·_Sonnet_4.6_·_DeepSeek_v4-444?style=flat-square)
+![模型](https://img.shields.io/badge/模型-Claude_Opus_4.8_·_Sonnet_4.6_·_GPT--5.5_·_DeepSeek_v4_·_IMAGINE2-444?style=flat-square)
 ![能力](https://img.shields.io/badge/能力-对话_·_编程_·_图片_·_视频-444?style=flat-square)
 ![平台](https://img.shields.io/badge/平台-Web_·_Windows_·_macOS-444?style=flat-square)
 ![国内](https://img.shields.io/badge/国内直连-无需翻墙-22a06b?style=flat-square)
