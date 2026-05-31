@@ -3,7 +3,7 @@
 # 玄机 XuanJi · 你的 Claude，办公就绪
 
 **面向中国办公场景的 Claude 客户端 / Claude Code Agent 平台**
-国内直连 · 自研客户端 · 量大管饱 · **Claude 防封不退款** · 原生适配 DeepSeek v4 · **新增 GPT 全系 (GPT-5.5 / GPT-5.4 Mini) + IMAGINE2 图像生成** + 即梦 Seedance
+开箱即用 · 自研客户端 · 量大管饱 · **Claude 防封不退款** · 原生适配 DeepSeek v4 · **新增 GPT 全系 (GPT-5.5 / GPT-5.4 Mini) + IMAGINE2 图像生成** + 即梦 Seedance
 
 [![访问主站](https://img.shields.io/badge/主站-xuanji.dev-d97757?style=for-the-badge)](https://xuanji.dev)
 [![国内站](https://img.shields.io/badge/国内站-xuanjiart.com-d97757?style=for-the-badge)](https://xuanjiart.com)
@@ -12,7 +12,7 @@
 ![模型](https://img.shields.io/badge/模型-Claude_Opus_4.8_·_Sonnet_4.6_·_GPT--5.5_·_DeepSeek_v4_·_IMAGINE2-444?style=flat-square)
 ![能力](https://img.shields.io/badge/能力-对话_·_编程_·_图片_·_视频-444?style=flat-square)
 ![平台](https://img.shields.io/badge/平台-Web_·_Windows_·_macOS-444?style=flat-square)
-![国内](https://img.shields.io/badge/国内直连-无需翻墙-22a06b?style=flat-square)
+![连接](https://img.shields.io/badge/开箱即用-稳定可靠-22a06b?style=flat-square)
 
 </div>
 
@@ -54,7 +54,7 @@ Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、�
 | | 痛点 | 玄机怎么解 |
 |---|---|---|
 | **01** | 账号一充钱就被 Anthropic 区域风控封停，余额清零退款无门 | **自营长期养护账号池**，专业团队 24/7 监控运维。**不封号、不退款** —— 账号风险我们扛 |
-| **02** | 国内访问 Claude 要翻墙，节点抖、半夜断流 | **国内全程直连**，无需任何"魔法"，打开浏览器就能用 |
+| **02** | 第三方线路节点抖动、半夜断流，关键时刻连不上 | **自研稳定直连线路**，告别节点抖动，打开浏览器或桌面客户端就能用 |
 | **03** | 第三方代理跑路 / 接口随时挂 / 客户端 SDK 一升级就崩 | **自研网页对话 + 桌面客户端**，从零写到尾，不依赖任何第三方代理 SDK，宕机我们 24h 扛着修 |
 | **04** | 按 token 计费天天怕花超，按月限次又不够用 | **不限对话次数订阅**（标准套餐），峰值不够就**按需补包**，账单清清楚楚 |
 | **05** | 国产模型不接，中文场景体验差 | 原生接入 **DeepSeek v4**，中文写作、长文档、代码任务一线水准 |
@@ -110,7 +110,7 @@ Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、�
 
 <div align="center">
 
-**玄机 XuanJi** · Claude 客户端 / Claude Code Agent 国产替代 · 国内直连 · DeepSeek v4 · 即梦 Seedance
+**玄机 XuanJi** · Claude 客户端 / Claude Code Agent · GPT / IMAGINE2 · DeepSeek v4 · 即梦 Seedance
 
 `Claude 国内` · `Claude Code` · `Claude 防封` · `Claude 镜像` · `Cursor 国产替代` · `AI 办公` · `文生视频`
 
