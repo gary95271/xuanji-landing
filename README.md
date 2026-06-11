@@ -35,6 +35,20 @@
 
 Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、不依赖浏览器进程，搭载 **Claude Fable 5 / Opus 4.8**。
 
+## 📊 一句话，生成一份完整 PPT
+
+把报告、素材直接丢给 AI，说"做成 PPT"—— 自动列大纲、排版、配图，生成可下载的 **.pptx**。Word / Excel / PDF 同样一键产出。
+
+<div align="center">
+<img src="assets/ppt-promo.webp" width="400" alt="玄机一键生成 PPT · 一句话产出完整演示文稿" />
+<img src="assets/ppt-duo.webp" width="400" alt="玄机浏览器沙箱与桌面客户端 · 双端生成办公文件" />
+</div>
+
+| 端 | 怎么用 |
+|---|---|
+| 🌐 **网页端 · 浏览器沙箱** | 打开网页即用，零安装。AI 在你的浏览器内**真实执行 Python**，现场生成 PPT / Excel / Word / PDF，做完直接下载 —— 数据全程不离开浏览器 |
+| 💻 **桌面客户端 · 完整 Agent** | IDE 式工作台搭载完整 **Claude Code Agent**：读你的本地素材、多轮自主规划，批量产出整套汇报材料，重活长活交给它跑 |
+
 ---
 
 ## ⭐ Star 一下，拿 ¥30 优惠码
