@@ -7,7 +7,7 @@
 
 [![访问主站](https://img.shields.io/badge/主站-xuanji.dev-d97757?style=for-the-badge)](https://xuanji.dev)
 [![国内站](https://img.shields.io/badge/国内站-xuanjiart.com-d97757?style=for-the-badge)](https://xuanjiart.com)
-[![立即试用](https://img.shields.io/badge/⭐_Star_换-¥30_优惠码-FF5722?style=for-the-badge)](https://xuanji.dev/register)
+[![立即试用](https://img.shields.io/badge/⭐_Star_送-7天畅享套餐-FF5722?style=for-the-badge)](https://xuanji.dev/register)
 
 ![模型](https://img.shields.io/badge/模型-Claude_Fable_5_·_Opus_4.8_·_Sonnet_4.6_·_GPT--5.5_·_DeepSeek_v4_·_IMAGINE2_·_Seedance-444?style=flat-square)
 ![能力](https://img.shields.io/badge/能力-对话_·_编程_·_图片_·_视频-444?style=flat-square)
@@ -51,17 +51,15 @@ Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、�
 
 ---
 
-## ⭐ Star 一下，拿 ¥30 优惠码
+## ⭐ Star 一下，送 7 天畅享套餐
 
-支持开源、扩散品牌，送你 **¥30 优惠码**，抵扣任意订阅或按量充值。**2 步搞定**（无需邀请码）：
+支持开源、扩散品牌，**Star 本仓库即赠送 7 天畅享套餐使用名额**（20× 快速模型基础配额 · 联网检索 · 文件上传 · Python 沙箱，正常体验全功能）。**3 步搞定**：
 
 1. 在本仓库右上角点 **Star** ⭐
-2. 去 [**xuanji.dev/register**](https://xuanji.dev/register) 注册，**邀请码字段填你的 GitHub 用户名**
+2. 去 [**xuanji.dev/register**](https://xuanji.dev/register) 注册账号
+3. 加 [QQ 群 1097758261](#-客服--联系方式)，**联系群管理员**报 GitHub 用户名 + 注册邮箱，管理员核验后为你开通
 
-系统自动校验 Star 状态 → 注册成功 ¥30 优惠券自动到账。
-
-> 1 个 GitHub 账号限 1 个邮箱；不可叠加新人首月 -¥30，取较大那个。
-> 自动校验上线前，可加 [QQ 群 1097758261](#-客服--联系方式) 报 GitHub 用户名手动领码。
+> 1 个 GitHub 账号限领 1 次。
 
 ## 为什么选玄机 —— 5 个真实痛点都帮你解决了
 
