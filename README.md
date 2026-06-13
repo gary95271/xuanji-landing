@@ -3,13 +3,13 @@
 # 玄机 XuanJi · 你的 Claude，办公就绪
 
 **面向中国办公场景的 Claude 客户端 / Claude Code Agent 平台**
-开箱即用 · 自研客户端 · 量大管饱 · **Claude 防封不退款** · **新增 Claude Fable 5 新一代旗舰** · 原生适配 DeepSeek v4 · GPT 全系 (GPT-5.5 / GPT-5.4 Mini) + IMAGINE2 图像生成 + 即梦 Seedance
+开箱即用 · 自研客户端 · 量大管饱 · **Claude 防封不退款** · 原生适配 DeepSeek v4 · GPT 全系 (GPT-5.5 / GPT-5.4 Mini) + IMAGINE2 图像生成 + 即梦 Seedance
 
 [![访问主站](https://img.shields.io/badge/主站-xuanji.dev-d97757?style=for-the-badge)](https://xuanji.dev)
 [![国内站](https://img.shields.io/badge/国内站-xuanjiart.com-d97757?style=for-the-badge)](https://xuanjiart.com)
 [![立即试用](https://img.shields.io/badge/⭐_Star_送-7天畅享套餐-FF5722?style=for-the-badge)](https://xuanji.dev/register)
 
-![模型](https://img.shields.io/badge/模型-Claude_Fable_5_·_Opus_4.8_·_Sonnet_4.6_·_GPT--5.5_·_DeepSeek_v4_·_IMAGINE2_·_Seedance-444?style=flat-square)
+![模型](https://img.shields.io/badge/模型-Claude_Opus_4.8_·_Sonnet_4.6_·_GPT--5.5_·_DeepSeek_v4_·_IMAGINE2_·_Seedance-444?style=flat-square)
 ![能力](https://img.shields.io/badge/能力-对话_·_编程_·_图片_·_视频-444?style=flat-square)
 ![平台](https://img.shields.io/badge/平台-Web_·_Windows_·_macOS-444?style=flat-square)
 ![连接](https://img.shields.io/badge/开箱即用-稳定可靠-22a06b?style=flat-square)
@@ -33,7 +33,7 @@
 
 ![桌面客户端实拍](assets/demo-client.webp)
 
-Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、不依赖浏览器进程，搭载 **Claude Fable 5 / Opus 4.8**。
+Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、不依赖浏览器进程，搭载 **Claude Opus 4.8**。
 
 ## 📊 一句话，生成一份完整 PPT
 
@@ -73,7 +73,6 @@ Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、�
 
 ## 支持模型
 
-- **Claude Fable 5** 🆕 —— 新一代旗舰，1M 长上下文 / 128K 输出，最难的推理与编程首选
 - **Claude Opus 4.8** —— 旗舰推理，1M 长上下文，复杂场景主力
 - **Claude Sonnet 4.6** —— 主推日常，性价比之王
 - **DeepSeek v4** —— 国产顶配，中文 / 长文 / 代码不掉队
@@ -123,9 +122,9 @@ Mac / Windows 双平台原生应用，全局热键、剪贴板/截图直发、�
 
 <div align="center">
 
-**玄机 XuanJi** · Claude Fable 5 / Claude 客户端 / Claude Code Agent · GPT / IMAGINE2 · DeepSeek v4 · 即梦 Seedance
+**玄机 XuanJi** · Claude 客户端 / Claude Code Agent · GPT / IMAGINE2 · DeepSeek v4 · 即梦 Seedance
 
-`Claude` · `Claude Fable 5` · `Claude Code` · `Claude 防封` · `GPT` · `IMAGINE2` · `Cursor 国产替代` · `AI 办公` · `文生视频`
+`Claude` · `Claude Code` · `Claude 防封` · `GPT` · `IMAGINE2` · `Cursor 国产替代` · `AI 办公` · `文生视频`
 
 © 2026 玄机 XuanJi · All rights reserved.
 
